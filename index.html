@@ -736,6 +736,14 @@
         async function updateChancesDataMobile(task, taskNumber) {
             try {
                 console.log(`Updating Task ${taskNumber} (Mobile)...`);
+                
+                // Show loading state
+                const chancesElement = document.getElementById(`chances${taskNumber}`);
+                if (chancesElement) {
+                    chancesElement.innerText = "Loading...";
+                    chancesElement.style.color = '#666';
+                }
+                
                 const data = await fetchData(task.ChancesParentID);
                 console.log(`Task ${taskNumber} data received:`, data);
                 updateTaskImage(data, taskNumber);
@@ -968,12 +976,35 @@
         }
 
         // Initialize page
-        loadLogsFromStorage(); // Load existing logs first
-        testCorsProxies(); // Test CORS proxies
-        fetchAllData();
-        setInterval(fetchAllData, 2000); // Back to 2 seconds for better performance
-        updateTimer();
-        setInterval(updateTimer, 1000);
+        console.log('Initializing page...');
+        console.log('Screen width:', window.innerWidth);
+        console.log('User agent:', navigator.userAgent);
+        
+        // Force mobile view on small screens
+        if (window.innerWidth <= 768) {
+            document.body.classList.add('mobile-view');
+            console.log('Mobile view activated');
+        }
+        
+        // Initialize with timeout to prevent infinite loading
+        setTimeout(() => {
+            loadLogsFromStorage(); // Load existing logs first
+            testCorsProxies(); // Test CORS proxies
+            fetchAllData();
+            setInterval(fetchAllData, 2000); // Back to 2 seconds for better performance
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }, 100); // Small delay to ensure DOM is ready
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            console.log('Window resized to:', window.innerWidth);
+            if (window.innerWidth <= 768) {
+                document.body.classList.add('mobile-view');
+            } else {
+                document.body.classList.remove('mobile-view');
+            }
+        });
     </script>
 </body>
 </html>

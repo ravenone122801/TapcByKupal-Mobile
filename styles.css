@@ -11,6 +11,19 @@ body {
     min-height: 100vh;
 }
 
+/* Force mobile view class */
+body.mobile-view .desktop-only {
+    display: none !important;
+}
+
+body.mobile-view .data-container {
+    display: block !important;
+}
+
+body.mobile-view .tasks-container {
+    display: none !important;
+}
+
 /* Mobile-first responsive design */
 @media (max-width: 768px) {
     body {
