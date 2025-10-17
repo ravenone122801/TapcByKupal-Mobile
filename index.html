@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chances Monitor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+                <div class="cors-status" onclick="testCorsProxies()" style="cursor: pointer;" title="Click to test CORS">
+                    <span id="cors-status">CORS (?)</span>
+                </div>
+            <h1>LET'S GO BORA LET'S GO! <span class="emoji">🏖️</span><span class="emoji">🌊</span><span class="emoji">☀️</span></h1>
+            <button id="music-toggle" onclick="toggleBackgroundMusic()" class="music-button">
+                🎵
+            </button>
+        </div>
+        <div class="timer">
+            <p>Current Time: <span id="current-time">Loading...</span></p>
+        </div>
+    </div>
+    <div class="main-container">
+        <div class="sidebar">
+            <p>Selected Total: <span id="selected-total">0 coins</span></p>
+            <button id="unselect-all">Unselect All</button>
+        </div>
+        <div class="data-container">
+            <div class="data-list">
+                <!-- Task 1 -->
+                <div class="data-item">
+                    <div class="task-header">
+                        <span class="data-label">Task 1:</span>
+                        <span id="chances1" class="chances-text">Loading...</span>
+                        <span id="chances1-full" class="full-text"></span>
+                    </div>
+                    <div class="task-content">
+                        <img src="" data-task="Task1" alt="Task 1 Image" id="task1-image" class="task-image" onerror="this.src='https://via.placeholder.com/60?text=Image+Not+Found';">
+                        <div class="subtask-details">
+                            <p><span class="nameholder" id="subtask1-1-title" title="Loading...">First Join</span>: <span id="subtask1-1" class="coin-value">Loading...</span></p>
+                            <p><span class="nameholder" id="subtask1-2-title" title="Loading...">Register</span>: <span id="subtask1-2" class="coin-value">Loading...</span></p>
+                            <p><span class="nameholder" id="subtask1-3-title" title="Loading...">First Deposit</span>: <span id="subtask1-3" class="coin-value">Loading...</span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Task 2 -->
+                <div class="data-item">
+                    <div class="task-header">
+                        <span class="data-label">Task 2:</span>
+                        <span id="chances2" class="chances-text">Loading...</span>
+                        <span id="chances2-full" class="full-text"></span>
+                    </div>
+                    <div class="task-content">
+                        <img src="" data-task="Task2" alt="Task 2 Image" id="task2-image" class="task-image" onerror="this.src='https://via.placeholder.com/60?text=Image+Not+Found';">
+                        <div class="subtask-details">
+                            <p><span class="nameholder" id="subtask2-1-title" title="Loading...">First Join</span>: <span id="subtask2-1" class="coin-value">Loading...</span></p>
+                            <p><span class="nameholder" id="subtask2-2-title" title="Loading...">Register</span>: <span id="subtask2-2" class="coin-value">Loading...</span></p>
+                            <p><span class="nameholder" id="subtask2-3-title" title="Loading...">First Deposit</span>: <span id="subtask2-3" class="coin-value">Loading...</span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Task 6 -->
+                <div class="data-item">
+                    <div class="task-header">
+                        <span class="data-label">Task 6:</span>
+                        <span id="chances6" class="chances-text">Loading...</span>
+                        <span id="chances6-full" class="full-text"></span>
+                    </div>
+                    <div class="task-content">
+                        <img src="" data-task="Task6" alt="Task 6 Image" id="task6-image" class="task-image" onerror="this.src='https://via.placeholder.com/60?text=Image+Not+Found';">
+                        <div class="subtask-details">
+                            <p><span class="nameholder" id="subtask6-1-title" title="Loading...">First Join</span>: <span id="subtask6-1" class="coin-value">Loading...</span></p>
+                            <p><span class="nameholder" id="subtask6-2-title" title="Loading...">Register</span>: <span id="subtask6-2" class="coin-value">Loading...</span></p>
+                            <p><span class="nameholder" id="subtask6-3-title" title="Loading...">First Deposit</span>: <span id="subtask6-3" class="coin-value">Loading...</span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Task 5 -->
+                <div class="data-item">
+                    <div class="task-header">
+                        <span class="data-label">Task 5:</span>
+                        <span id="chances5" class="chances-text">Loading...</span>
+                    </div>
+                    <div class="task-content">
+                        <div class="subtask-details">
+                            <p><span class="nameholder" id="subtask6-4-title" title="Loading...">Second Deposit</span>: <span id="subtask6-4" class="coin-value">Loading...</span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Task 8 -->
+                <div class="data-item">
+                    <div class="task-header">
+                        <span class="data-label">Task 8:</span>
+                        <span id="chances8" class="chances-text">Loading...</span>
+                        <span id="chances8-full" class="full-text"></span>
+                    </div>
+                    <div class="task-content">
+                        <img src="" data-task="Task8" alt="Task 8 Image" id="task8-image" class="task-image" onerror="this.src='https://via.placeholder.com/60?text=Image+Not+Found';">
+                        <div class="subtask-details">
+                            <p><span class="nameholder" id="subtask8-1-title" title="Loading...">First Join</span>: <span id="subtask8-1" class="coin-value">Loading...</span></p>
+                            <p><span class="nameholder" id="subtask8-2-title" title="Loading...">Register</span>: <span id="subtask8-2" class="coin-value">Loading...</span></p>
+                            <p><span class="nameholder" id="subtask8-3-title" title="Loading...">First Deposit</span>: <span id="subtask8-3" class="coin-value">Loading...</span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Task 7 -->
+                <div class="data-item">
+                    <div class="task-header">
+                        <span class="data-label">Task 7:</span>
+                        <span id="chances7" class="chances-text">Loading...</span>
+                    </div>
+                    <div class="task-content">
+                        <div class="subtask-details">
+                            <p><span class="nameholder" id="subtask8-4-title" title="Loading...">Second Deposit</span>: <span id="subtask8-4" class="coin-value">Loading...</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-divider"></div>
+        <div class="log-container">
+            <h3>CHANCES DECREASE LOG</h3>
+            <div id="log-list"></div>
+        </div>
+    </div>
+
+    <!-- Audio elements -->
+    <audio id="notification-sound" src="notif.mp3" preload="auto"></audio>
+    <audio id="alarm-1255am" src="1255AM.mp3" preload="auto"></audio>
+    <audio id="alarm-1am" src="1am.mp3" preload="auto"></audio>
+    <audio id="background-music" src="lobby-music.mp3" preload="auto" loop></audio>
+
+    <script>
+        // === EDIT SECTION ===
+        const EDIT_SECTION = {
+            tapCoinToken: "e915a68155565878e85d7164795f084aeaed0b94fc717f1af895a9ff26df5cd8",
+            sign: "05209aad8210dc09a751609d275e9ad7",
+            digest: "xbsig_v1=4EFCDC3D3817C8E0C0FAE2ACD8C24A35"
+        };
+
+        // === TASK SECTION ===
+        const TASKS = {
+            Task1: {
+                ChancesParentID: 18431568, //ori ID ng pinaka top kung saan ang icon image
+                ChancesTaskClass: "CPL-PLAY",
+                ChancesID: 172276, //xbOfferId ng chances "cap" "put"
+                Subtasks: [
+                    { xbOfferId: 172274, title: "join the app", coin: 900 },
+                    { xbOfferId: 172275, title: "Sign up, play 8 minutes and login tomorrow", coin: 2160 },
+                    { xbOfferId: 172276, title: "the first deposit successful after register", coin: 72000 }
+                ]
+            },
+            Task2: {
+                ChancesParentID: 18433339,
+                ChancesTaskClass: "CPL-PLAY",
+                ChancesID: 173087,
+                Subtasks: [
+                    { xbOfferId: 173086, title: "Register and play for 15 minute", coin: 450 },
+                    { xbOfferId: 173086, title: "Register and play for 15 minute", coin: 450 },
+                    { xbOfferId: 173087, title: "Complete first charge on first day join game", coin: 81000 }
+                ]
+            },
+            
+            Task6: {
+                ChancesParentID: 18445792,
+                ChancesTaskClass: "CPL-PLAY",
+                ChancesID: 178490,
+                SecondChancesID: 178491,
+                Subtasks: [
+                    { xbOfferId: 178488, title: "join the app", coin: 1215 },
+                    { xbOfferId: 178489, title: "Register and play 5 minutes", coin: 2700 },
+                    { xbOfferId: 178490, title: "The first deposit successful （just for new users）", coin: 76500 },
+                    { xbOfferId: 178491, title: "Second deposit successful", coin: 0 }
+                ]
+            },
+            Task8: {
+                ChancesParentID: 18445787,
+                ChancesTaskClass: "CPL-PLAY",
+                ChancesID: 178486,
+                SecondChancesID: 178487,
+                Subtasks: [
+                    { xbOfferId: 178484, title: "Join the game", coin: 450 },
+                    { xbOfferId: 178485, title: "Complete the registration", coin: 900 },
+                    { xbOfferId: 178486, title: "The first deposit successfully", coin: 54000 },
+                    { xbOfferId: 178487, title: "Second deposit successfully", coin: 0 }
+                ]
+            }
+        };
+
+        // API URL - Try different CORS proxies
+        const corsProxies = [
+            "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://kapi.sgtap2coin.com/api/cashants/v1/subtasks"),
+            "https://corsproxy.io/?https://kapi.sgtap2coin.com/api/cashants/v1/subtasks",
+            "https://thingproxy.freeboard.io/fetch/https://kapi.sgtap2coin.com/api/cashants/v1/subtasks",
+            "https://cors-anywhere.herokuapp.com/https://kapi.sgtap2coin.com/api/cashants/v1/subtasks",
+            "https://api.codetabs.com/v1/proxy?quest=" + encodeURIComponent("https://kapi.sgtap2coin.com/api/cashants/v1/subtasks"),
+            "https://cors.bridged.cc/https://kapi.sgtap2coin.com/api/cashants/v1/subtasks"
+        ];
+        
+        let currentProxyIndex = 0;
+        const apiUrl = corsProxies[currentProxyIndex];
+
+        // Common headers
+        const headers = {
+            "Content-Type": "application/json; charset=utf-8",
+            "User-Agent": "okhttp/4.10.0",
+            "SIGN": EDIT_SECTION.sign,
+            "Digest": EDIT_SECTION.digest,
+            "VersionName": "2.7.3",
+            "tapCoinToken": EDIT_SECTION.tapCoinToken,
+            "X-Requested-With": "XMLHttpRequest",
+            "Connection": "Keep-Alive",
+            "Accept-Encoding": "gzip"
+        };
+
+        // Common request body
+        const baseRequestBody = {
+            "userId": "22321418885",
+            "publisher": "tapcoin",
+            "mediaSource": "Organic",
+            "innerContext": {
+                "flavor": "speedversion",
+                "uniqueId": "",
+                "loginToken": EDIT_SECTION.tapCoinToken
+            },
+            "envContext": {
+                "advertiseId": "428661ce-bacd-4dcf-aea6-2ff2db1c8456",
+                "androidId": "b4b83eb62914b145",
+                "bssid": "02:00:00:00:00:00",
+                "client": "android",
+                "country": "ph",
+                "deviceModel": "2311DRK48G",
+                "deviceOs": "android_15",
+                "did": "ad33e5bb-ed61-4b5c-9371-b13be8f3d1c3",
+                "emulator": 0,
+                "imei": "",
+                "mac": "",
+                "network": 2,
+                "rooted": 1,
+                "systemLanguage": "en",
+                "version": "2.7.3",
+                "latitude": -1,
+                "longitude": -1,
+                "appsflyerId": "1743431893321-3344892344633185015"
+            },
+            "review": true,
+            "sdk_version": "2.7.3",
+            "placement": "",
+            "type": "offerwall"
+        };
+
+        // Store previous chances for each task
+        let previousChances = {
+            Task1: null,
+            Task2: null,
+            Task6: null,
+            Task8: null,
+            Task5: null,  // For Task 5 (second chances in Task 6)
+            Task7: null   // For Task 7 (second chances in Task 8)
+        };
+
+        // Store selected tasks and their total coins
+        let selectedTasks = {};
+        let totalSelectedCoins = 0;
+
+        // Store logs - Load from localStorage or initialize empty array
+        let chancesLog = JSON.parse(localStorage.getItem('tapcoinLogs') || '[]');
+
+        // Audio elements
+        const notificationSound = document.getElementById('notification-sound');
+        const alarm1255am = document.getElementById('alarm-1255am');
+        const alarm1am = document.getElementById('alarm-1am');
+        const backgroundMusic = document.getElementById('background-music');
+
+        // Function to format time as HH:MM:SS AM/PM
+        function formatTime(date) {
+            return date.toLocaleTimeString('en-US', { hour12: true });
+        }
+
+        // Function to add log entry with color coding
+        function addLogEntry(taskNumber, remainingChances, cap) {
+            const now = new Date();
+            const timeShort = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+            const logEntry = `T-${taskNumber} (${remainingChances}/${cap}) ${timeShort}`;
+            chancesLog.unshift(logEntry);
+            // Save to localStorage
+            localStorage.setItem('tapcoinLogs', JSON.stringify(chancesLog));
+            updateLogDisplay();
+        }
+
+        // Function to get task color
+        function getTaskColor(taskNumber) {
+            const colors = {
+                1: '#FF6B6B', // Red - Task 1
+                2: '#4ECDC4', // Teal - Task 2
+                5: '#FF69B4', // Pink - Task 5
+                6: '#FFD700', // Yellow - Task 6
+                7: '#45B7D1', // Blue - Task 7
+                8: '#32CD32'  // Green - Task 8
+            };
+            return colors[taskNumber] || '#FFFFFF'; // Default white if task not found
+        }
+
+        // Function to update log display with colors
+        function updateLogDisplay() {
+            const logList = document.getElementById('log-list');
+            logList.innerHTML = chancesLog.map(log => {
+                // Extract task number from log entry (handle both "Task X" and "T-X" formats)
+                const taskMatch = log.match(/(?:Task\s+|T-)(\d+)/);
+                const taskNumber = taskMatch ? parseInt(taskMatch[1]) : null;
+                const color = taskNumber ? getTaskColor(taskNumber) : '#FFFFFF';
+                
+                return `<p style="color: ${color}; border-left: 3px solid ${color}; padding-left: 8px; margin: 5px 0;">${log}</p>`;
+            }).join('');
+        }
+
+        // Function to clear logs at 12:59 AM
+        function checkLogClear() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            if (hours === 0 && minutes === 59) {
+                chancesLog = [];
+                // Clear from localStorage too
+                localStorage.removeItem('tapcoinLogs');
+                updateLogDisplay();
+                console.log("Logs cleared at 12:59 AM");
+            }
+        }
+
+        // Function to play notification sound
+        function playNotificationSound() {
+            notificationSound.currentTime = 0;
+            notificationSound.play().catch(error => {
+                console.error("Error playing notification sound:", error.message);
+            });
+        }
+
+        // Function to start background music
+        function startBackgroundMusic() {
+            backgroundMusic.volume = 0.3; // Set to 30% volume
+            backgroundMusic.play().catch(error => {
+                console.error("Error playing background music:", error.message);
+            });
+        }
+
+        // Function to stop background music
+        function stopBackgroundMusic() {
+            backgroundMusic.pause();
+        }
+
+        // Function to toggle background music
+        function toggleBackgroundMusic() {
+            const musicToggle = document.getElementById('music-toggle');
+            if (backgroundMusic.paused || backgroundMusic.ended) {
+                startBackgroundMusic();
+                musicToggle.style.background = 'rgba(76, 175, 80, 0.5)'; // Green when ON
+                musicToggle.style.borderColor = 'rgba(76, 175, 80, 0.8)';
+            } else {
+                stopBackgroundMusic();
+                musicToggle.style.background = 'rgba(255,255,255,0.2)'; // Default when OFF
+                musicToggle.style.borderColor = 'rgba(255,255,255,0.3)';
+            }
+        }
+
+        // Function to handle 12:55 AM to 12:59 AM alarm
+        let is1255amAlarmPlaying = false;
+        function check1255amAlarm() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            if (hours === 0 && minutes >= 55 && minutes <= 59) {
+                if (!is1255amAlarmPlaying) {
+                    alarm1255am.currentTime = 0;
+                    alarm1255am.loop = true;
+                    alarm1255am.play().catch(error => {
+                        console.error("Error playing 12:55 AM alarm:", error.message);
+                    });
+                    is1255amAlarmPlaying = true;
+                    console.log("12:55 AM alarm started");
+                }
+            } else if (is1255amAlarmPlaying) {
+                alarm1255am.pause();
+                alarm1255am.loop = false;
+                is1255amAlarmPlaying = false;
+                console.log("12:55 AM alarm stopped");
+            }
+        }
+
+        // Function to handle 1:00 AM alarm
+        let last1amPlayed = null;
+        function check1amAlarm() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+            const currentDate = now.toDateString();
+            if (hours === 1 && minutes === 0 && seconds === 0 && last1amPlayed !== currentDate) {
+                alarm1am.currentTime = 0;
+                alarm1am.play().catch(error => {
+                    console.error("Error playing 1:00 AM alarm:", error.message);
+                });
+                last1amPlayed = currentDate;
+                console.log("1:00 AM alarm played");
+            }
+        }
+
+        // Function to toggle task selection for whole task box (used by Tasks 1,2,8)
+        function toggleTaskSelection(taskNumber) {
+            const taskBox = document.querySelector(`.task-box[data-task="${taskNumber}"]`);
+            const totalCoinsElement = document.getElementById(`total-coins${taskNumber}`);
+            const totalCoinsText = totalCoinsElement.innerText.replace(' coins', '');
+            const totalCoins = parseInt(totalCoinsText) || 0;
+
+            if (taskBox.classList.contains('selected')) {
+                taskBox.classList.remove('selected');
+                delete selectedTasks[taskNumber];
+                totalSelectedCoins -= totalCoins;
+            } else {
+                taskBox.classList.add('selected');
+                selectedTasks[taskNumber] = totalCoins;
+                totalSelectedCoins += totalCoins;
+            }
+
+            document.getElementById('selected-total').innerText = `${totalSelectedCoins} coins`;
+        }
+
+        // Generic tile selection toggler used by inner tiles
+        function toggleInnerTileSelection(tileElement) {
+            const key = tileElement.getAttribute('data-key');
+            if (!key) return;
+
+            let coins = 0;
+            if (key === '6-main') {
+                const j = (document.getElementById('subtask6-1')?.innerText || '0').replace(' coins', '');
+                const r = (document.getElementById('subtask6-2')?.innerText || '0').replace(' coins', '');
+                const f = (document.getElementById('subtask6-3')?.innerText || '0').replace(' coins', '');
+                coins = (parseInt(j)||0) + (parseInt(r)||0) + (parseInt(f)||0);
+            } else if (key === '6-second') {
+                const secondCoinsText = (document.getElementById('subtask6-4')?.innerText || '0').replace(' coins', '');
+                coins = parseInt(secondCoinsText) || 0;
+            } else if (key === '8-main') {
+                const j = (document.getElementById('subtask8-1')?.innerText || '0').replace(' coins', '');
+                const r = (document.getElementById('subtask8-2')?.innerText || '0').replace(' coins', '');
+                const f = (document.getElementById('subtask8-3')?.innerText || '0').replace(' coins', '');
+                coins = (parseInt(j)||0) + (parseInt(r)||0) + (parseInt(f)||0);
+            } else if (key === '8-second') {
+                const secondCoinsText = (document.getElementById('subtask8-4')?.innerText || '0').replace(' coins', '');
+                coins = parseInt(secondCoinsText) || 0;
+            }
+
+            if (tileElement.classList.contains('selected')) {
+                tileElement.classList.remove('selected');
+                if (selectedTasks[key] !== undefined) {
+                    totalSelectedCoins -= selectedTasks[key];
+                    delete selectedTasks[key];
+                }
+            } else {
+                tileElement.classList.add('selected');
+                selectedTasks[key] = coins;
+                totalSelectedCoins += coins;
+            }
+            document.getElementById('selected-total').innerText = `${totalSelectedCoins} coins`;
+        }
+
+        // Function to unselect all tasks
+        function unselectAllTasks() {
+            document.querySelectorAll('.task-box').forEach(taskBox => {
+                taskBox.classList.remove('selected');
+            });
+            selectedTasks = {};
+            totalSelectedCoins = 0;
+            document.getElementById('selected-total').innerText = '0 coins';
+        }
+
+        // Add event listener for unselect all button
+        document.getElementById('unselect-all').addEventListener('click', unselectAllTasks);
+        // Add listeners for inner tile selections (Tasks 6 and 8)
+        document.addEventListener('click', (e) => {
+            const tile = e.target.closest && e.target.closest('.inner-tile');
+            if (tile) {
+                e.stopPropagation();
+                toggleInnerTileSelection(tile);
+            }
+        });
+
+        // Function to update task image from JSON
+        function updateTaskImage(data, taskNumber) {
+            const img = document.getElementById(`task${taskNumber}-image`);
+            img.src = data.data.parent.logoImageUrl || 'https://via.placeholder.com/60?text=Image+Not+Found';
+        }
+
+        // Function to fetch data from API with proxy fallback
+        async function fetchData(parentId) {
+            const requestBody = { ...baseRequestBody, "parentId": parentId };
+            
+            for (let i = 0; i < corsProxies.length; i++) {
+                try {
+                    const currentUrl = corsProxies[i];
+                    console.log(`Trying proxy ${i + 1}/${corsProxies.length}: ${currentUrl}`);
+                    
+                    const response = await fetch(currentUrl, {
+                        method: "POST",
+                        headers: headers,
+                        body: JSON.stringify(requestBody)
+                    });
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        console.log(`Success with proxy ${i + 1}`);
+                        currentProxyIndex = i;
+                        return data;
+                    } else {
+                        console.log(`Proxy ${i + 1} failed: ${response.status}`);
+                    }
+                } catch (error) {
+                    console.log(`Proxy ${i + 1} error:`, error.message);
+                }
+            }
+            
+            throw new Error("All CORS proxies failed");
+        }
+
+        // Function to update task image from JSON
+        function updateTaskImage(data, taskNumber) {
+            const img = document.getElementById(`task${taskNumber}-image`);
+            if (img) {
+                img.src = data.data.parent.logoImageUrl || 'https://via.placeholder.com/60?text=Image+Not+Found';
+                console.log(`Task ${taskNumber} image updated:`, img.src);
+            }
+        }
+
+        // Function to update chances and subtask data
+        async function updateChancesData(task, taskNumber) {
+            try {
+                console.log(`Updating Task ${taskNumber}...`);
+                const data = await fetchData(task.ChancesParentID);
+                console.log(`Task ${taskNumber} data received:`, data);
+                updateTaskImage(data, taskNumber);
+
+                const chancesTask = data.data.sons[task.ChancesTaskClass] ? 
+                    data.data.sons[task.ChancesTaskClass].find(item => item.xbOfferId === task.ChancesID) : null;
+                
+                const chancesElementId = `chances${taskNumber}`;
+                const progressElementId = `progress${taskNumber}`;
+                const fullTextElementId = `chances${taskNumber}-full`;
+                if (chancesTask) {
+                    const cap = chancesTask.cap || 0;
+                    const put = chancesTask.put || 0;
+                    const remainingChances = Math.max(0, cap - put);
+                    console.log(`${chancesElementId} - Cap: ${cap}, Put: ${put}, Remaining: ${remainingChances}`);
+                    
+                    // Update chances element (works for both old and new layout)
+                    const chancesElement = document.getElementById(chancesElementId);
+                    if (chancesElement) {
+                        chancesElement.innerText = `${remainingChances} / ${cap}`;
+                        console.log(`Updated ${chancesElementId} to: ${remainingChances} / ${cap}`);
+                    } else {
+                        console.log(`Element ${chancesElementId} not found!`);
+                    }
+                    
+                    const taskKey = `Task${taskNumber}`;
+                    if (previousChances[taskKey] !== null && previousChances[taskKey] > remainingChances) {
+                        playNotificationSound();
+                        addLogEntry(taskNumber, remainingChances, cap);
+                        console.log(`${chancesElementId} - Chances decreased from ${previousChances[taskKey]} to ${remainingChances}`);
+                    }
+                    previousChances[taskKey] = remainingChances;
+
+                    if (remainingChances === 0) {
+                        if (chancesElement) {
+                            chancesElement.classList.add('zero-chances');
+                        }
+                        const fullTextElement = document.getElementById(fullTextElementId);
+                        if (fullTextElement) {
+                            fullTextElement.innerText = ' (Have full!)';
+                        }
+                    } else if (remainingChances < 5) {
+                        if (chancesElement) {
+                            chancesElement.classList.add('low-chances');
+                        }
+                        const fullTextElement = document.getElementById(fullTextElementId);
+                        if (fullTextElement) {
+                            fullTextElement.innerText = '';
+                        }
+                    } else {
+                        if (chancesElement) {
+                            chancesElement.classList.remove('low-chances', 'zero-chances');
+                        }
+                        const fullTextElement = document.getElementById(fullTextElementId);
+                        if (fullTextElement) {
+                            fullTextElement.innerText = '';
+                        }
+                    }
+
+                    const percentage = cap > 0 ? (remainingChances / cap) * 100 : 0;
+                    const progressElement = document.getElementById(progressElementId);
+                    if (progressElement) {
+                        progressElement.style.width = `${percentage}%`;
+                    }
+
+                    const subtasks = data.data.sons[task.ChancesTaskClass] || [];
+            let totalCoins = 0;
+            let secondDepositCoins = 0;
+                    task.Subtasks.forEach((target, index) => {
+                        const subtask = subtasks.find(item => item.xbOfferId === target.xbOfferId);
+                        const titleElementId = `subtask${taskNumber}-${index + 1}-title`;
+                        const valueElementId = `subtask${taskNumber}-${index + 1}`;
+                        if (subtask) {
+                            const titleElement = document.getElementById(titleElementId);
+                            const valueElement = document.getElementById(valueElementId);
+                            if (titleElement) {
+                                titleElement.setAttribute('title', subtask.title);
+                            }
+                            if (valueElement) {
+                                valueElement.innerText = `${subtask.coin} coins`;
+                            }
+                            totalCoins += subtask.coin;
+                            // capture second deposit coins for task 6 second selection
+                            if (taskNumber === 6 && (index + 1) === 4) {
+                                secondDepositCoins = subtask.coin || 0;
+                            }
+                            // capture second deposit coins for task 8 second selection
+                            if (taskNumber === 8 && (index + 1) === 4) {
+                                secondDepositCoins = subtask.coin || 0;
+                            }
+                        } else {
+                            const titleElement = document.getElementById(titleElementId);
+                            const valueElement = document.getElementById(valueElementId);
+                            if (titleElement) {
+                                titleElement.setAttribute('title', 'N/A');
+                            }
+                            if (valueElement) {
+                                valueElement.innerText = "N/A";
+                            }
+                        }
+                    });
+
+                    const totalCoinsElement = document.getElementById(`total-coins${taskNumber}`);
+                    if (totalCoinsElement) {
+                        totalCoinsElement.innerText = `${totalCoins} coins`;
+                    }
+
+                    if (selectedTasks[taskNumber] !== undefined && selectedTasks[taskNumber] !== totalCoins) {
+                        totalSelectedCoins = totalSelectedCoins - selectedTasks[taskNumber] + totalCoins;
+                        selectedTasks[taskNumber] = totalCoins;
+                        document.getElementById('selected-total').innerText = `${totalSelectedCoins} coins`;
+                    }
+                    // keep inner tile selection sums in sync if selected
+                    if (taskNumber === 6 && selectedTasks['6-second'] !== undefined && selectedTasks['6-second'] !== secondDepositCoins) {
+                        totalSelectedCoins = totalSelectedCoins - selectedTasks['6-second'] + secondDepositCoins;
+                        selectedTasks['6-second'] = secondDepositCoins;
+                        document.getElementById('selected-total').innerText = `${totalSelectedCoins} coins`;
+                    }
+                    if (taskNumber === 8 && selectedTasks['8-second'] !== undefined) {
+                        const secondCoinsText = (document.getElementById('subtask8-4')?.innerText || '0').replace(' coins', '');
+                        const secondCoins = parseInt(secondCoinsText) || 0;
+                        if (selectedTasks['8-second'] !== secondCoins) {
+                            totalSelectedCoins = totalSelectedCoins - selectedTasks['8-second'] + secondCoins;
+                            selectedTasks['8-second'] = secondCoins;
+                            document.getElementById('selected-total').innerText = `${totalSelectedCoins} coins`;
+                        }
+                    }
+                    // also keep main tile sums (first three subtasks) in sync if selected
+                    if (taskNumber === 6 && selectedTasks['6-main'] !== undefined) {
+                        const j = (document.getElementById('subtask6-1')?.innerText || '0').replace(' coins', '');
+                        const r = (document.getElementById('subtask6-2')?.innerText || '0').replace(' coins', '');
+                        const f = (document.getElementById('subtask6-3')?.innerText || '0').replace(' coins', '');
+                        const mainSum = (parseInt(j)||0) + (parseInt(r)||0) + (parseInt(f)||0);
+                        if (selectedTasks['6-main'] !== mainSum) {
+                            totalSelectedCoins = totalSelectedCoins - selectedTasks['6-main'] + mainSum;
+                            selectedTasks['6-main'] = mainSum;
+                            document.getElementById('selected-total').innerText = `${totalSelectedCoins} coins`;
+                        }
+                    }
+                    if (taskNumber === 8 && selectedTasks['8-main'] !== undefined) {
+                        const j = (document.getElementById('subtask8-1')?.innerText || '0').replace(' coins', '');
+                        const r = (document.getElementById('subtask8-2')?.innerText || '0').replace(' coins', '');
+                        const f = (document.getElementById('subtask8-3')?.innerText || '0').replace(' coins', '');
+                        const mainSum = (parseInt(j)||0) + (parseInt(r)||0) + (parseInt(f)||0);
+                        if (selectedTasks['8-main'] !== mainSum) {
+                            totalSelectedCoins = totalSelectedCoins - selectedTasks['8-main'] + mainSum;
+                            selectedTasks['8-main'] = mainSum;
+                            document.getElementById('selected-total').innerText = `${totalSelectedCoins} coins`;
+                        }
+                    }
+                } else {
+                    console.log(`${chancesElementId} - Chances task not found for xbOfferId: ${task.ChancesID}`);
+                    document.getElementById(chancesElementId).innerText = "Task not found";
+                    document.getElementById(fullTextElementId).innerText = '';
+                    document.getElementById(progressElementId).style.width = "0%";
+                    document.getElementById(`task${taskNumber}-image`).src = 'https://via.placeholder.com/60?text=Image+Not+Found';
+                    task.Subtasks.forEach((_, index) => {
+                        document.getElementById(`subtask${taskNumber}-${index + 1}-title`).setAttribute('title', 'N/A');
+                        document.getElementById(`subtask${taskNumber}-${index + 1}`).innerText = "N/A";
+                    });
+                    document.getElementById(`total-coins${taskNumber}`).innerText = "N/A";
+                    previousChances[`Task${taskNumber}`] = null;
+                    if (selectedTasks[taskNumber] !== undefined) {
+                        totalSelectedCoins -= selectedTasks[taskNumber];
+                        delete selectedTasks[taskNumber];
+                        document.getElementById('selected-total').innerText = `${totalSelectedCoins} coins`;
+                        document.querySelector(`.task-box[data-task="${taskNumber}"]`).classList.remove('selected');
+                    }
+                }
+            } catch (error) {
+                document.getElementById(chancesElementId).innerText = "Error fetching data";
+                document.getElementById(fullTextElementId).innerText = '';
+                document.getElementById(progressElementId).style.width = "0%";
+                document.getElementById(`task${taskNumber}-image`).src = 'https://via.placeholder.com/60?text=Image+Not+Found';
+                task.Subtasks.forEach((_, index) => {
+                    document.getElementById(`subtask${taskNumber}-${index + 1}-title`).setAttribute('title', 'Error');
+                    document.getElementById(`subtask${taskNumber}-${index + 1}`).innerText = "Error";
+                });
+                document.getElementById(`total-coins${taskNumber}`).innerText = "Error";
+                previousChances[`Task${taskNumber}`] = null;
+                if (selectedTasks[taskNumber] !== undefined) {
+                    totalSelectedCoins -= selectedTasks[taskNumber];
+                    delete selectedTasks[taskNumber];
+                    document.getElementById('selected-total').innerText = `${totalSelectedCoins} coins`;
+                    document.querySelector(`.task-box[data-task="${taskNumber}"]`).classList.remove('selected');
+                }
+                console.error(`${chancesElementId} Error:`, error.message);
+                console.error("Request Body:", JSON.stringify({ ...baseRequestBody, "parentId": task.ChancesParentID }, null, 2));
+                console.error("Headers:", headers);
+            }
+        }
+
+        // Mobile data container function (updates chances, images, and subtasks)
+        async function updateChancesDataMobile(task, taskNumber) {
+            try {
+                console.log(`Updating Task ${taskNumber} (Mobile)...`);
+                const data = await fetchData(task.ChancesParentID);
+                console.log(`Task ${taskNumber} data received:`, data);
+                updateTaskImage(data, taskNumber);
+
+                const chancesTask = data.data.sons[task.ChancesTaskClass] ? 
+                    data.data.sons[task.ChancesTaskClass].find(item => item.xbOfferId === task.ChancesID) : null;
+                
+                const chancesElementId = `chances${taskNumber}`;
+                const fullTextElementId = `chances${taskNumber}-full`;
+                
+                if (chancesTask) {
+                    const cap = chancesTask.cap || 0;
+                    const put = chancesTask.put || 0;
+                    const remainingChances = Math.max(0, cap - put);
+                    console.log(`${chancesElementId} - Cap: ${cap}, Put: ${put}, Remaining: ${remainingChances}`);
+                    
+                    // Update chances element (mobile data container)
+                    const chancesElement = document.getElementById(chancesElementId);
+                    if (chancesElement) {
+                        chancesElement.innerText = `${remainingChances} / ${cap}`;
+                        console.log(`Updated ${chancesElementId} to: ${remainingChances} / ${cap}`);
+                    } else {
+                        console.log(`Element ${chancesElementId} not found!`);
+                    }
+                    
+                    // Update full text element if it exists
+                    const fullTextElement = document.getElementById(fullTextElementId);
+                    if (fullTextElement) {
+                        if (remainingChances === 0) {
+                            fullTextElement.innerText = ' (Have full!)';
+                        } else {
+                            fullTextElement.innerText = '';
+                        }
+                    }
+                    
+                    // Update subtask details
+                    const subtasks = data.data.sons[task.ChancesTaskClass] || [];
+                    task.Subtasks.forEach((target, index) => {
+                        const subtask = subtasks.find(item => item.xbOfferId === target.xbOfferId);
+                        const titleElementId = `subtask${taskNumber}-${index + 1}-title`;
+                        const valueElementId = `subtask${taskNumber}-${index + 1}`;
+                        if (subtask) {
+                            const titleElement = document.getElementById(titleElementId);
+                            const valueElement = document.getElementById(valueElementId);
+                            if (titleElement) {
+                                titleElement.setAttribute('title', subtask.title);
+                            }
+                            if (valueElement) {
+                                valueElement.innerText = `${subtask.coin}`;
+                            }
+                        } else {
+                            const titleElement = document.getElementById(titleElementId);
+                            const valueElement = document.getElementById(valueElementId);
+                            if (titleElement) {
+                                titleElement.setAttribute('title', 'N/A');
+                            }
+                            if (valueElement) {
+                                valueElement.innerText = "N/A";
+                            }
+                        }
+                    });
+                    
+                    // Check for chances decrease and add log entry
+                    const taskKey = `Task${taskNumber}`;
+                    if (previousChances[taskKey] !== null && previousChances[taskKey] > remainingChances) {
+                        playNotificationSound();
+                        addLogEntry(taskNumber, remainingChances, cap);
+                        console.log(`${chancesElementId} - Chances decreased from ${previousChances[taskKey]} to ${remainingChances}`);
+                    }
+                    previousChances[taskKey] = remainingChances;
+                } else {
+                    console.log(`${chancesElementId} - Chances task not found for xbOfferId: ${task.ChancesID}`);
+                    const chancesElement = document.getElementById(chancesElementId);
+                    if (chancesElement) {
+                        chancesElement.innerText = "Task not found";
+                    }
+                    const fullTextElement = document.getElementById(fullTextElementId);
+                    if (fullTextElement) {
+                        fullTextElement.innerText = '';
+                    }
+                    previousChances[`Task${taskNumber}`] = null;
+                }
+            } catch (error) {
+                console.error(`Error updating Task ${taskNumber}:`, error.message);
+                const chancesElement = document.getElementById(`chances${taskNumber}`);
+                if (chancesElement) {
+                    chancesElement.innerText = "Error fetching data";
+                }
+                const fullTextElement = document.getElementById(`chances${taskNumber}-full`);
+                if (fullTextElement) {
+                    fullTextElement.innerText = '';
+                }
+                previousChances[`Task${taskNumber}`] = null;
+            }
+        }
+
+        // Update the inline "second chances" bars for taskNumber using SecondChancesID
+        function updateSecondChancesBar(taskNumber, task) {
+            try {
+                if (!task || !task.SecondChancesID) return;
+                const chancesClass = task.ChancesTaskClass;
+                const chancesParentId = task.ChancesParentID;
+
+                fetchData(chancesParentId).then(data => {
+                    const list = data.data.sons[chancesClass] || [];
+                    const second = list.find(item => item.xbOfferId === task.SecondChancesID);
+                    const chancesElementId = taskNumber === 6 ? 'chances5' : (taskNumber === 8 ? 'chances7' : null);
+                    if (!chancesElementId) return;
+                    if (second) {
+                        const cap = second.cap || 0;
+                        const put = second.put || 0;
+                        const remaining = Math.max(0, cap - put);
+                        const percent = cap > 0 ? (remaining / cap) * 100 : 0;
+                        const el = document.getElementById(chancesElementId);
+                        if (el) {
+                            el.innerText = `${remaining} / ${cap}${remaining === 0 ? ' (Have full!)' : ''}`;
+                            if (remaining === 0) {
+                                el.classList.add('zero-chances');
+                            } else {
+                                el.classList.remove('zero-chances');
+                            }
+                        }
+
+                        // Add monitoring for Task 5 and Task 7 chances decrease
+                        const taskKey = taskNumber === 6 ? 'Task5' : 'Task7';
+                        if (previousChances[taskKey] !== null && previousChances[taskKey] > remaining) {
+                            playNotificationSound();
+                            addLogEntry(taskNumber === 6 ? 5 : 7, remaining, cap);
+                            console.log(`${chancesElementId} - Chances decreased from ${previousChances[taskKey]} to ${remaining}`);
+                        }
+                        previousChances[taskKey] = remaining;
+                    } else {
+                        const el = document.getElementById(chancesElementId);
+                        if (el) el.innerText = `Task not found`;
+                    }
+                }).catch(() => {
+                    const chancesElementId = taskNumber === 6 ? 'chances5' : (taskNumber === 8 ? 'chances7' : null);
+                    const el = document.getElementById(chancesElementId);
+                    if (el) el.innerText = `Error`;
+                });
+            } catch {}
+        }
+
+        // Fetch data for all tasks (Mobile version)
+        async function fetchAllData() {
+            try {
+                await Promise.all([
+                    updateChancesDataMobile(TASKS.Task1, 1),
+                    updateChancesDataMobile(TASKS.Task2, 2),
+                    updateChancesDataMobile(TASKS.Task6, 6),
+                    updateChancesDataMobile(TASKS.Task8, 8)
+                ]);
+                // Update second chances bars for Tasks 6 and 8 using their SecondChancesID
+                updateSecondChancesBar(6, TASKS.Task6);
+                updateSecondChancesBar(8, TASKS.Task8);
+            } catch (error) {
+                console.error("Error in fetchAllData:", error.message);
+            }
+        }
+
+        // Update live timer and check alarms/logs
+        function updateTimer() {
+            const now = new Date();
+            const time12h = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+            document.getElementById("current-time").innerText = time12h;
+            checkLogClear();
+            check1255amAlarm();
+            check1amAlarm();
+        }
+
+        // Function to test CORS proxies
+        async function testCorsProxies() {
+            const corsElement = document.getElementById('cors-status');
+            const corsContainer = corsElement.parentElement;
+            corsElement.innerText = 'CORS (?)';
+            corsContainer.className = 'cors-status failed';
+            
+            console.log('Testing CORS proxies...');
+            
+            // Try each CORS proxy
+            for (let i = 0; i < corsProxies.length; i++) {
+                try {
+                    const testUrl = corsProxies[i];
+                    console.log(`Testing with URL ${i + 1}:`, testUrl);
+                    
+                    // Add timeout to prevent hanging
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+                    
+                    const response = await fetch(testUrl, {
+                        method: "POST",
+                        headers: headers,
+                        body: JSON.stringify({ ...baseRequestBody, "parentId": 18431568 }),
+                        signal: controller.signal
+                    });
+                    
+                    clearTimeout(timeoutId);
+                    
+                    if (response.ok) {
+                        console.log(`CORS test successful with proxy ${i + 1}`);
+                        currentProxyIndex = i;
+                        corsElement.innerText = `CORS (${i + 1})`;
+                        corsContainer.className = 'cors-status working';
+                        return true;
+                    } else {
+                        console.log(`Proxy ${i + 1} failed with status:`, response.status);
+                    }
+                } catch (error) {
+                    console.log(`Proxy ${i + 1} failed:`, error.message);
+                    if (error.name === 'AbortError') {
+                        console.log(`Proxy ${i + 1} timed out`);
+                    }
+                }
+            }
+            
+            console.error('All CORS proxies failed');
+            corsElement.innerText = 'CORS (X)';
+            corsContainer.className = 'cors-status failed';
+            return false;
+        }
+
+        // Function to load logs from localStorage on page load
+        function loadLogsFromStorage() {
+            const savedLogs = localStorage.getItem('tapcoinLogs');
+            if (savedLogs) {
+                chancesLog = JSON.parse(savedLogs);
+                updateLogDisplay();
+                console.log(`Loaded ${chancesLog.length} logs from storage`);
+            }
+        }
+
+        // Initialize page
+        loadLogsFromStorage(); // Load existing logs first
+        testCorsProxies(); // Test CORS proxies
+        fetchAllData();
+        setInterval(fetchAllData, 2000); // Back to 2 seconds for better performance
+        updateTimer();
+        setInterval(updateTimer, 1000);
+    </script>
+</body>
+</html>
