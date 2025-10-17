@@ -150,15 +150,17 @@ body {
 @media (max-width: 768px) {
     .header {
         background: #555; /* Gray background like in your design */
-        padding: 5px 8px;
+        padding: 5px 8px; /* More padding to prevent cutoff */
+        box-sizing: border-box;
     }
     
     .header-content {
         flex-direction: row;
-        gap: 5px;
+        gap: 3px; /* Reduced gap */
         align-items: center;
         justify-content: space-between;
         width: 100%;
+        min-width: 0; /* Allow shrinking */
     }
     
     .cors-status {
@@ -169,7 +171,7 @@ body {
     }
     
     .header h1 {
-        font-size: 12px !important;
+        font-size: 12px !important; /* Bigger text now that layout is fixed */
         margin: 0;
         flex: 1;
         text-align: center;
@@ -177,14 +179,16 @@ body {
         overflow: hidden;
         text-overflow: ellipsis;
         font-weight: 600;
+        min-width: 0; /* Allow shrinking */
     }
     
     .music-button {
-        width: 24px;
-        height: 24px;
-        font-size: 10px;
+        width: 20px; /* Smaller button */
+        height: 20px;
+        font-size: 8px; /* Smaller icon */
         flex: 0 0 auto;
-        margin-left: 5px;
+        margin-left: 2px; /* Reduced margin */
+        margin-right: 0; /* No right margin */
     }
     
     .header .timer {
@@ -283,10 +287,13 @@ body {
         display: flex;
         flex-direction: row;
         margin-top: 80px;
-        padding: 0;
+        padding: 0 5px; /* More padding to prevent edge cutoff */
         min-width: auto;
         max-width: 100%;
         height: calc(100vh - 80px);
+        box-sizing: border-box;
+        width: 100vw; /* Force full width */
+        gap: 4px; /* Small gap between containers */
     }
 }
 
@@ -356,9 +363,10 @@ body {
     
     .data-container {
         display: block !important; /* Show data container on mobile */
-        width: 50%; /* Balanced width */
-        padding: 10px;
+        width: 48%; /* Slightly smaller to ensure fit */
+        padding: 8px;
         flex-shrink: 0;
+        box-sizing: border-box;
     }
     
     .data-list {
@@ -385,18 +393,18 @@ body {
     .data-label {
         font-weight: bold;
         color: #333;
-        font-size: 10px;
+        font-size: 8px; /* Smaller task title text */
     }
     
     .data-item .chances-text {
-        font-size: 10px;
+        font-size: 8px; /* Smaller chances text */
         color: #000;
         font-weight: bold;
     }
     
     .data-item .full-text {
         color: #800000;
-        font-size: 8px;
+        font-size: 6px; /* Even smaller full text */
     }
     
     .task-content {
@@ -465,7 +473,7 @@ body {
 /* Mobile log container - right side */
 @media (max-width: 768px) {
     .log-container {
-        width: 50%; /* Balanced width */
+        width: 48%; /* Slightly smaller to ensure fit */
         margin-left: 0;
         border-radius: 0;
         box-shadow: none;
@@ -475,6 +483,32 @@ body {
         flex: 1;
         overflow: hidden; /* Prevent overflow */
         min-width: 0; /* Allow shrinking */
+        box-sizing: border-box;
+        padding: 5px; /* Add padding to prevent cutoff */
+    }
+}
+
+/* Extra small screens - make header even more compact */
+@media (max-width: 480px) {
+    .header {
+        padding: 3px 2px; /* Back to original working padding for very small screens */
+    }
+    
+    .header h1 {
+        font-size: 10px !important; /* Bigger text for very small screens too */
+    }
+    
+    .music-button {
+        width: 20px;
+        height: 20px;
+        font-size: 8px;
+        margin-left: 1px;
+        margin-right: 2px; /* Small right margin for very small screens */
+    }
+    
+    .cors-status {
+        font-size: 7px;
+        padding: 1px 3px;
     }
 }
 
